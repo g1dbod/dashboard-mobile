@@ -45,7 +45,7 @@ const Notes = () => {
               <NoteItem note={note} key={note.id} idx={idx} />
             ))
           ) : (
-            <p className="text-lg w-full h-max p-2 text-center">Список пуст</p>
+            <p className="text-lg w-full h-max p-2 text-center text-palitra-c100">Список пуст</p>
           )}
           <motion.button
             {...animateListNote(notes?.length)}

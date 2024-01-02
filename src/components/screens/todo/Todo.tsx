@@ -35,7 +35,7 @@ const Todo = () => {
         {todos && todos.length !== 0 ? (
           todos.map((todo, idx) => <TodoItem todo={todo} key={todo.id} idx={idx} />)
         ) : (
-          <p className="text-lg w-full h-max p-2 text-center">Список пуст</p>
+          <p className="text-lg w-full h-max p-2 text-center text-palitra-c100">Список пуст</p>
         )}
         <motion.button
         {...animateListTodo(todos?.length)}
