@@ -1,11 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  assetPrefix: './',
-  images: {
-    loader: 'custom',
-    loaderFile: './my-loader.ts',
-  },
+  output: 'standalone',
 }
 
 module.exports = nextConfig
