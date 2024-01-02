@@ -1,28 +1,41 @@
-version: '3'
+version: '3.7'
+
 services:
-  app:
+  next-app:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    expose:
+      - 3000
     volumes:
-      - .:/usr/src/app
+      - ./next-app:/usr/src/app
 
   nginx:
     image: nginx:latest
-    container_name: nginx
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./etc/letsencrypt:/etc/letsencrypt
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    depends_on:
+      - next-app
+    networks:
+      - web
 
   certbot:
     image: certbot/certbot
-    container_name: certbot
     volumes:
-      - ./etc/letsencrypt:/etc/letsencrypt
-    command: certonly --webroot --webroot-path=/var/www/html --email g1dbod@yandex.ru --agree-tos -d g1dbod.ru
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    depends_on:
+      - nginx
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+networks:
+  web:
+    driver: bridge
