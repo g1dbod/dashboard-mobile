@@ -10,27 +10,20 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x, 20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.url }}
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-    - run: npm run build
-    - run: npm start
-
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: out # The folder the action should deploy.
+      - name: Deploy app to GitHub Pages
+        uses: lr0pb/deploy-pages@v1
+        id: deployment
+        with:
+          node-version: 18.x
+          build-comand: 'build'
+          output-dir: 'out'
