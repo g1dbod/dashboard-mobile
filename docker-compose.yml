@@ -1,0 +1,28 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./etc/letsencrypt:/etc/letsencrypt
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./etc/letsencrypt:/etc/letsencrypt
+    command: certonly --webroot --webroot-path=/var/www/html --email g1dbod@yandex.ru --agree-tos -d g1dbod.ru
