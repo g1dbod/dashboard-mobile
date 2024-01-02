@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Веб-приложение на Next.js с использованием Zustand
 
-## Getting Started
+Добро пожаловать в мой проект! Это веб-приложение, созданное с использованием Next.js, Zustand и других технологий. Ниже вы найдете информацию о проекте, его возможностях и инструкции по запуску.
 
-First, run the development server:
+## О проекте
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Это веб-приложение представляет собой многофункциональное приложение, адаптированное для использования как на компьютере, так и на мобильных устройствах. Вот основные функции приложения:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Домашняя страница:** Анимированные часы.
+- **Todo лист:** Управляйте своими задачами с легкостью.
+- **Заметки:** Ведите свои заметки и идеи.
+- **Календарь:** Планируйте события и задачи.
+- **Настройки:** Импортируйте/экспортируйте настройки, изменяйте цвета.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Технологии
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Проект разработан с использованием следующих технологий:
 
-## Learn More
+- **Next.js:** Реактивный фреймворк React для создания современных веб-приложений.
+- **Zustand:** Простая библиотека для управления состоянием в React.
+- **Framer Motion:** Для создания красивых анимаций в интерфейсе.
+- **React Hook Form:** Для управления формами с легкостью.
+- **Moment:** Библиотека для работы с датами и временем.
+- **Lucide-React:** Иконки для улучшения визуального опыта.
 
-To learn more about Next.js, take a look at the following resources:
+## Запуск проекта
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. **Установите зависимости:**
+   ```bash
+   npm install
+   ```
